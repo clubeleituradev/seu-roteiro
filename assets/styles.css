@@ -51,6 +51,19 @@ h1 { font-size: clamp(2.25rem, 5.5vw, 4.65rem); font-weight: 800; line-height: 1
 .about-logo { display: block; width: clamp(5.5rem, 13vw, 8rem); height: auto }
 .about-leitura h2 { font-size: 1.2rem }
 .about-leitura p { max-width: 68ch; margin: .35rem 0 .6rem }
+.footer-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem 1.5rem; margin-bottom: .6rem }
+.footer-feedback { font-weight: 650 }
+.feedback-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .85rem 1.25rem; margin-top: 1.4rem; padding: 1.15rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); scroll-margin-top: 5rem }
+.feedback-section h2 { font-size: 1.2rem; margin-bottom: .3rem }
+.feedback-section > div:first-child { flex: 1 1 18rem }
+.analytics-notice { position: fixed; z-index: 7; inset: auto 1rem 1rem auto; width: min(27rem, calc(100% - 2rem)); padding: 1rem; border: 1px solid var(--line); border-radius: .9rem; background: var(--surface); box-shadow: 0 .7rem 2rem rgb(34 32 49 / .15) }
+.analytics-notice h2 { font-size: 1.1rem }
+.analytics-notice p { color: var(--muted); margin: .35rem 0 .7rem }
+.analytics-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem }
+#analytics-accept { background: var(--accent); color: white }
+#analytics-accept:hover { background: var(--accent-hover) }
+#analytics-preferences { margin-top: .55rem }
+@media print { .analytics-notice { display: none!important } }
 .primary-link { display: inline-block; padding: .65rem 1rem; border-radius: .65rem; background: var(--accent); color: white; font-weight: 700; text-decoration: none }
 .primary-link:hover { background: var(--accent-hover) }
 .home-event { display: grid; gap: .85rem; padding: clamp(1rem,3vw,1.5rem); border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); box-shadow: 0 .7rem 2rem rgb(34 32 49 / .07) }
@@ -68,10 +81,11 @@ h1 { font-size: clamp(2.25rem, 5.5vw, 4.65rem); font-weight: 800; line-height: 1
 .arrival-links { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem }
 .home-flow { display: grid; grid-template-columns: minmax(11rem,1fr) minmax(0,2.6fr); align-items: start; gap: 1rem 2rem; margin: clamp(1.6rem,4vw,3rem) 0; scroll-margin-top: 5rem }
 .home-flow h2 { font-size: clamp(1.65rem,3vw,2.4rem); line-height: 1.12; letter-spacing: -.035em; margin-bottom: .45rem }
+.flow-extra { margin-top: .65rem }
 .flow-map {
   --map-inset: 1.25rem;
   --pin: 2.45rem;
-  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
   list-style: none; margin: 0; padding: var(--map-inset);
   border: 1px solid var(--line); border-radius: 1rem;
   background: var(--accent-tint);

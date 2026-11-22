@@ -4,10 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Faça seu roteiro, um app do Leitura Dev para buscar livros, comparar preços e planejar a visita à 28ª Festa do Livro da USP.">
 <meta property="og:title" content="Faça seu roteiro | Festa do Livro da USP">
-<meta property="og:description" content="Escolha os livros, compare preços e monte seu roteiro pelas editoras na Festa do Livro da USP. Feito pelo Leitura Dev.">
+<meta property="og:description" content="Escolha os livros, compare preços e monte seu roteiro pelas editoras na Festa do Livro da USP. Um projeto do Leitura Dev.">
 <meta property="og:type" content="website">
+<meta name="ga4-measurement-id" content="G-YGLV2LWJ90">
 <title>Faça seu roteiro | Festa do Livro da USP</title>
 <link rel="stylesheet" href="assets/styles.css">
+<script src="assets/analytics.js" defer></script>
 <script src="dados/catalogo.js" defer></script>
 <script src="assets/app.js" defer></script>
 <body>
@@ -33,7 +35,7 @@
           <a class="primary-link" href="#catalogo">Explorar catálogo</a>
           <a class="secondary-link" href="#como-usar">Como usar</a>
         </div>
-        <p class="home-credit">Feito pelo <a href="https://leitura.dev/">Leitura Dev</a>.</p>
+        <p class="home-credit">Um projeto do <a href="https://leitura.dev/">Leitura Dev</a>.</p>
       </div>
       <div class="home-event">
         <h2>Quando e onde</h2>
@@ -44,19 +46,19 @@
       </div>
     </div>
     <section class="home-flow" id="como-usar" aria-labelledby="flow-title">
-      <div><h2 id="flow-title">Como usar</h2><p class="meta">Da escolha dos livros à visita às editoras, em três paradas.</p></div>
+      <div>
+        <h2 id="flow-title">Como usar</h2>
+        <p class="meta">Monte sua lista em dois passos.</p>
+        <p class="meta flow-extra">Se quiser consultar o mapa ou localizar uma editora sem favoritar livros, abra a <a href="#editoras">lista de editoras</a>.</p>
+      </div>
       <ol class="flow-map" role="list">
         <li class="home-feature">
           <span class="flow-pin" aria-hidden="true">1</span>
-          <div class="flow-stop"><h3>Encontre e favorite</h3><p class="meta">Busque pelo título ou explore os filtros. Use a estrela para salvar o livro.</p><a href="#catalogo">Buscar no catálogo</a></div>
+          <div class="flow-stop"><h3>Favorite os livros</h3><p class="meta">Busque pelo título ou use os filtros do catálogo. Toque na estrela dos livros que quer salvar.</p><a href="#catalogo">Buscar no catálogo</a></div>
         </li>
         <li class="home-feature">
           <span class="flow-pin" aria-hidden="true">2</span>
-          <div class="flow-stop"><h3>Localize as editoras</h3><p class="meta">Consulte o espaço e a ilha de cada editora no mapa da feira.</p><a href="#editoras">Ver lista de editoras</a></div>
-        </li>
-        <li class="home-feature">
-          <span class="flow-pin" aria-hidden="true">3</span>
-          <div class="flow-stop"><h3>Compare e siga o roteiro</h3><p class="meta">Informe os preços da Amazon com frete para comparar os totais. Na feira, marque os livros que pegar em cada parada.</p><a href="#roteiro">Abrir meu roteiro</a></div>
+          <div class="flow-stop"><h3>Abra Meu roteiro</h3><p class="meta">Seus favoritos já aparecem por editora, com o número da ilha. Se quiser, compare com a Amazon. Na feira, marque os livros que pegar.</p><a href="#roteiro">Abrir meu roteiro</a></div>
         </li>
       </ol>
     </section>
@@ -80,6 +82,13 @@
         <p>O Leitura Dev é um clube de leitura online para pessoas desenvolvedoras. A comunidade lê um livro por ciclo e se reúne para discutir como aplicar as ideias à arquitetura, ao código e à carreira.</p>
         <a href="https://leitura.dev/">Conheça o clube de leitura</a>
       </div>
+    </section>
+    <section class="feedback-section" id="feedback" aria-labelledby="feedback-title">
+      <div>
+        <h2 id="feedback-title">Feedback</h2>
+        <p class="meta">Envie sugestões ou correções para o Leitura Dev.</p>
+      </div>
+      <a class="primary-link" href="mailto:contato@leitura.dev?subject=Feedback%20%E2%80%94%20Fa%C3%A7a%20seu%20roteiro">Enviar e-mail</a>
     </section>
   </section>
   <div id="catalogo" data-view hidden>
@@ -124,6 +133,7 @@
     <h2 id="visit-title" tabindex="-1">Meu roteiro na feira</h2>
     <p id="visit-summary" role="status"></p>
     <p><a href="#como-chegar">Como chegar à feira</a></p>
+    <p class="meta" id="visit-import-help" hidden>Já tem um roteiro em outro aparelho? Lá, escolha <strong>Exportar roteiro</strong>. Depois, use <strong>Importar roteiro</strong> aqui e selecione o arquivo baixado para trazer seus favoritos, marcações e preços da Amazon que você informou.</p>
     <div class="visit-actions">
       <button id="clear-favorites" hidden>Limpar favoritos</button>
       <button id="print-visit" hidden>Imprimir roteiro</button>
@@ -163,10 +173,22 @@
     </div>
   </section>
   <footer class="note">
-    <p>Feito pelo <a href="https://leitura.dev/">Leitura Dev</a>.</p>
+    <div class="footer-heading">
+      <p>Um projeto do <a href="https://leitura.dev/">Leitura Dev</a>.</p>
+      <a class="footer-feedback" href="#feedback">Feedback</a>
+    </div>
     <p>App independente com dados coletados na busca oficial da Edusp em 22/11/2026. Os temas foram atribuídos automaticamente. Para atualizações, consulte o <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio">site oficial da Festa</a>. Capas das editoras e da <a href="https://openlibrary.org/">Open Library</a>.</p>
+    <button id="analytics-preferences" type="button" hidden>Preferências de estatísticas</button>
   </footer>
   <noscript><p>Ative o JavaScript para pesquisar e filtrar o catálogo.</p></noscript>
 </main>
+<section class="analytics-notice" id="analytics-notice" aria-labelledby="analytics-title" hidden>
+  <h2 id="analytics-title" tabindex="-1">Estatísticas do site</h2>
+  <p>Com sua permissão, usamos o Google Analytics para contar os acessos ao site.</p>
+  <div class="analytics-actions">
+    <button id="analytics-decline" type="button">Recusar</button>
+    <button id="analytics-accept" type="button">Permitir</button>
+  </div>
+</section>
 </body>
 </html>

@@ -254,6 +254,7 @@ function renderVisit() {
   const count = saved.length;
   byId('favorites-count').textContent = '(' + integer.format(count) + ')';
   byId('visit-plan').hidden = count === 0;
+  byId('visit-import-help').hidden = count > 0;
   for (const id of ['clear-favorites','print-visit','export-visit']) byId(id).hidden = count === 0;
   let summary = count
     ? count + (count === 1 ? ' livro' : ' livros') + ' · ' + groups.size + (groups.size === 1 ? ' editora' : ' editoras')
@@ -636,7 +637,7 @@ byId('clear-favorites').onclick = () => {
   byId('visit-title').focus({preventScroll:true});
 };
 const headings = {capa: 'home-title', catalogo: 'page-title', editoras: 'directory-title', roteiro: 'visit-title'};
-const homeSections = {'como-usar': 'flow-title', 'como-chegar': 'arrival-title'};
+const homeSections = {'como-usar': 'flow-title', 'como-chegar': 'arrival-title', feedback: 'feedback-title'};
 const menuToggle = byId('menu-toggle');
 function setMenu(open) {
   menuToggle.setAttribute('aria-expanded', String(open));
@@ -670,6 +671,7 @@ function showPage(moveFocus) {
   document.querySelector('.skip').href = active === 'catalogo' ? '#query' : '#' + headings[active];
   if (active === 'editoras') renderPublishers();
   if (active === 'catalogo') filter(readCatalogHash());
+  window.roteiroAnalytics?.page(active);
   if (Object.hasOwn(homeSections, hash)) {
     if (moveFocus) {
       const heading = byId(homeSections[hash]);
