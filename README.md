@@ -15,6 +15,7 @@ A busca, os filtros e o mapa das ilhas funcionam offline. As capas e os links ex
 | `index.html` | Capa, catálogo, lista de editoras e roteiro |
 | `assets/styles.css` | Estilos e layout responsivo |
 | `assets/app.js` | Busca, filtros, favoritos, mapa e comparações |
+| `assets/navigation.js` | Menu, navegação e carregamento do catálogo sob demanda |
 | `assets/analytics.js` | Medição de visitas e preferências do Google Analytics 4 |
 | `assets/mapa-ilhas.webp` | Mapa oficial das ilhas |
 | `dados/catalogo.js` | Dados carregados pelo site, incluindo os endereços das capas |

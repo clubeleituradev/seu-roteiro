@@ -10,8 +10,7 @@
 <title>Faça seu roteiro | Festa do Livro da USP</title>
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/analytics.js" defer></script>
-<script src="dados/catalogo.js" defer></script>
-<script src="assets/app.js" defer></script>
+<script src="assets/navigation.js" defer></script>
 <body>
 <a class="skip" href="#query">Ir para a busca</a>
 <header class="site-header"><div class="wrap header-inner">
@@ -21,7 +20,7 @@
     <a href="#capa" data-page="capa" aria-current="page">Início</a>
     <a href="#catalogo" data-page="catalogo">Catálogo</a>
     <a href="#editoras" data-page="editoras">Editoras</a>
-    <a class="visit-link" href="#roteiro" data-page="roteiro">Meu roteiro <span id="favorites-count">(0)</span></a>
+    <a class="visit-link" href="#roteiro" data-page="roteiro">Meu roteiro <span id="favorites-count" hidden></span></a>
   </nav>
 </div></header>
 <main class="wrap" id="inicio">
@@ -30,7 +29,7 @@
       <div class="home-copy">
         <p class="edition">28ª Festa do Livro da USP</p>
         <h1 id="home-title">Faça seu roteiro</h1>
-        <p class="intro-copy">Favorite os livros, compare os preços da feira com os que você encontrou na Amazon e monte seu roteiro pelas ilhas das editoras.</p>
+        <p class="intro-copy">Favorite livros e descubra em quais ilhas buscá-los na Festa do Livro da USP.</p>
         <div class="home-actions">
           <a class="primary-link" href="#catalogo">Explorar catálogo</a>
           <a class="secondary-link" href="#como-usar">Como usar</a>
@@ -40,46 +39,44 @@
       <div class="home-event">
         <h2>Quando e onde</h2>
         <div class="event-date"><strong>25 a 29 de novembro de 2026</strong><p>Cidade Universitária, São Paulo</p></div>
-        <p class="event-schedule"><span>Quarta a sexta · 9h às 21h</span><span>Sábado e domingo · 9h às 19h</span></p>
+        <p class="event-schedule"><span>Quarta a sexta · 9h às 21h</span><span>Sábado e domingo · 9h às 19h</span><span>Entrada gratuita</span></p>
         <a href="#como-chegar">Como chegar</a>
-        <p class="source-note">Os dados deste app vieram do site oficial. Para atualizações, consulte o <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio">site da Festa do Livro da USP</a>.</p>
       </div>
     </div>
     <section class="home-flow" id="como-usar" aria-labelledby="flow-title">
       <div>
         <h2 id="flow-title">Como usar</h2>
-        <p class="meta">Monte sua lista em dois passos.</p>
-        <p class="meta flow-extra">Se quiser consultar o mapa ou localizar uma editora sem favoritar livros, abra a <a href="#editoras">lista de editoras</a>.</p>
+        <p class="meta">Monte seu roteiro em dois passos.</p>
       </div>
       <ol class="flow-map" role="list">
         <li class="home-feature">
           <span class="flow-pin" aria-hidden="true">1</span>
-          <div class="flow-stop"><h3>Favorite os livros</h3><p class="meta">Busque pelo título ou use os filtros do catálogo. Toque na estrela dos livros que quer salvar.</p><a href="#catalogo">Buscar no catálogo</a></div>
+          <div class="flow-stop"><h3>Favorite os livros</h3><p class="meta">Busque no catálogo e toque na estrela para salvar.</p><a href="#catalogo">Buscar no catálogo</a></div>
         </li>
         <li class="home-feature">
           <span class="flow-pin" aria-hidden="true">2</span>
-          <div class="flow-stop"><h3>Abra Meu roteiro</h3><p class="meta">Seus favoritos já aparecem por editora, com o número da ilha. Se quiser, compare com a Amazon. Na feira, marque os livros que pegar.</p><a href="#roteiro">Abrir meu roteiro</a></div>
+          <div class="flow-stop"><h3>Abra Meu roteiro</h3><p class="meta">Veja a ilha de cada editora e marque os livros que pegar.</p><a href="#roteiro">Abrir meu roteiro</a></div>
         </li>
       </ol>
     </section>
-    <section class="arrival" id="como-chegar" aria-labelledby="arrival-title">
-      <h2 id="arrival-title">Como chegar</h2>
-      <div class="arrival-grid">
-        <div><h3>Endereço</h3><p class="meta">Avenida Professor Mello Moraes, Travessa C, Cidade Universitária, Butantã, São Paulo.</p><p class="meta">A tenda tem entradas pela Praça do Relógio Solar e pela Raia Olímpica.</p></div>
-        <div><h3>Transporte público</h3><p class="meta">As estações de referência são Butantã (Linha 4–Amarela) e Cidade Universitária (Linha 9–Esmeralda). Confira no mapa a melhor combinação com os ônibus do campus.</p></div>
-        <div><h3>Horários</h3><p class="meta">De quarta a sexta, das 9h às 21h. Sábado e domingo, das 9h às 19h. Entrada gratuita.</p></div>
-      </div>
-      <div class="arrival-links">
-        <a class="primary-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=-23.559028%2C-46.719778" target="_blank" rel="noopener noreferrer">Traçar rota no Google Maps</a>
-        <a href="https://puspc.usp.br/linhas-de-onibus/">Linhas de ônibus da USP</a>
-        <a href="https://www.edusp.com.br/eventos/28a-festa-do-livro-da-usp/">Informações da Edusp</a>
-      </div>
+    <section class="faq" id="perguntas" aria-labelledby="faq-title">
+      <h2 id="faq-title">Perguntas frequentes</h2>
+      <details id="como-chegar">
+        <summary id="arrival-title">Como chego à feira?</summary>
+        <p>A tenda fica na Av. Professor Mello Moraes, Travessa C, na Cidade Universitária. As entradas ficam na Praça do Relógio Solar e na Raia Olímpica.</p>
+        <p>De transporte público, as estações de referência são Butantã (Linha 4) e Cidade Universitária (Linha 9).</p>
+        <div class="arrival-links"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=-23.559028%2C-46.719778" target="_blank" rel="noopener noreferrer">Traçar rota no Google Maps</a><a href="https://puspc.usp.br/linhas-de-onibus/">Ônibus da USP</a></div>
+      </details>
+      <details><summary>Posso ver o mapa sem favoritar livros?</summary><p>Sim. A aba <a href="#editoras">Editoras</a> mostra o mapa e a ilha de cada editora.</p></details>
+      <details><summary>De onde vêm os preços?</summary><p>Os preços da feira vieram do catálogo oficial da Edusp em 22/11/2026. Para consultar alterações ou disponibilidade, abra a <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros">busca oficial da Festa</a>.</p></details>
+      <details><summary>Como comparo com a Amazon?</summary><p>Em Meu roteiro, informe o preço com frete da mesma edição. O app compara os totais dos livros com preço nos dois lugares.</p></details>
+      <details><summary>Como levo meu roteiro para outro aparelho?</summary><p>Use <strong>Exportar roteiro</strong> no aparelho onde a lista está salva. No outro, abra <strong>Importar roteiro</strong> e selecione o arquivo.</p></details>
     </section>
     <section class="about-leitura" aria-labelledby="leitura-title">
       <img class="about-logo" src="assets/logo-leitura-dev.png" alt="" width="880" height="662" loading="lazy">
       <div>
         <h2 id="leitura-title">Sobre o Leitura Dev</h2>
-        <p>O Leitura Dev é um clube de leitura online para pessoas desenvolvedoras. A comunidade lê um livro por ciclo e se reúne para discutir como aplicar as ideias à arquitetura, ao código e à carreira.</p>
+        <p>Clube de leitura online para pessoas desenvolvedoras. A cada ciclo, o grupo lê um livro e discute como aplicar as ideias na prática.</p>
         <a href="https://leitura.dev/">Conheça o clube de leitura</a>
       </div>
     </section>
@@ -91,17 +88,21 @@
       <a class="primary-link" href="mailto:contato@leitura.dev?subject=Feedback%20%E2%80%94%20Fa%C3%A7a%20seu%20roteiro">Enviar e-mail</a>
     </section>
   </section>
+  <div class="data-loading" id="data-loading" hidden>
+    <p id="data-loading-status" role="status">Carregando catálogo…</p>
+    <button id="retry-catalog" type="button" hidden>Tentar novamente</button>
+  </div>
   <div id="catalogo" data-view hidden>
   <section class="intro" aria-labelledby="page-title">
     <div>
       <p class="edition">28ª Festa do Livro da USP</p>
       <h1 id="page-title">Catálogo da feira</h1>
-      <p class="intro-copy">Encontre seus livros e organize a visita por editora.</p>
     </div>
     <div class="search"><label for="query">Buscar livros</label><input id="query" type="search" placeholder="Título, autor, ISBN ou assunto" autocomplete="off"></div>
   </section>
 
-  <section class="filters" aria-label="Filtros do catálogo">
+  <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="catalog-filters">Filtros e ordenação</button>
+  <section class="filters" id="catalog-filters" data-mobile-collapsed aria-label="Filtros do catálogo">
     <button id="reset">Limpar filtros</button>
     <div><label for="publisher">Editora</label><select id="publisher"></select></div>
     <div><label for="theme">Tema</label><select id="theme"></select></div>
@@ -110,7 +111,7 @@
     <div><label for="price">Preço de feira até (R$)</label><input id="price" type="number" min="0" step="0.01" placeholder="Sem limite"></div>
     <div><label for="sort">Ordenar por</label><select id="sort"><option value="title">Título (A–Z)</option><option value="price">Menor preço</option><option value="discount">Maior desconto</option></select></div>
     <p class="filter-note" id="filter-note"></p>
-    <p class="filter-note">Catálogo coletado no site da Edusp em 22/11/2026. Confira preços, disponibilidade e novos títulos na <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros">busca oficial da Festa</a>.</p>
+    <p class="filter-note">Base de 22/11/2026. <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros">Consulte atualizações na Edusp</a>.</p>
   </section>
   <div class="results-head"><strong id="count" role="status"></strong><button id="share-search" type="button">Copiar link da busca</button></div>
   <p id="share-feedback" class="share-feedback" role="status"></p>
@@ -132,17 +133,28 @@
   <section class="visit" id="roteiro" data-view hidden aria-labelledby="visit-title">
     <h2 id="visit-title" tabindex="-1">Meu roteiro na feira</h2>
     <p id="visit-summary" role="status"></p>
-    <p><a href="#como-chegar">Como chegar à feira</a></p>
-    <p class="meta" id="visit-import-help" hidden>Já tem um roteiro em outro aparelho? Lá, escolha <strong>Exportar roteiro</strong>. Depois, use <strong>Importar roteiro</strong> aqui e selecione o arquivo baixado para trazer seus favoritos, marcações e preços da Amazon que você informou.</p>
+    <p class="meta" id="visit-import-help" hidden>Já tem uma lista? Exporte no outro aparelho e selecione o arquivo em <strong>Importar roteiro</strong>.</p>
     <div class="visit-actions">
-      <button id="clear-favorites" hidden>Limpar favoritos</button>
-      <button id="print-visit" hidden>Imprimir roteiro</button>
-      <button id="export-visit" hidden>Exportar roteiro</button>
-      <button id="import-visit">Importar roteiro</button>
+      <div class="visit-options" id="visit-options" role="group" aria-label="Opções do roteiro" hidden>
+        <button id="print-visit" type="button" aria-label="Imprimir roteiro" title="Imprimir roteiro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H3V9h18v9h-3M6 14h12v7H6zM17 12h1"/></svg>
+        </button>
+        <button id="export-visit" type="button" aria-label="Exportar roteiro" title="Exportar roteiro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m-5 5 5-5 5 5M4 14v7h16v-7"/></svg>
+        </button>
+        <button id="import-visit" type="button" aria-label="Importar roteiro" title="Importar roteiro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 14v7h16v-7"/></svg>
+        </button>
+        <button id="clear-favorites" type="button" aria-label="Limpar favoritos" title="Limpar favoritos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6m4-6v6"/></svg>
+        </button>
+      </div>
+      <button id="import-visit-empty" type="button">Importar roteiro</button>
       <input id="visit-file" type="file" accept=".json,application/json" hidden>
     </div>
     <p id="visit-transfer-status" role="status"></p>
     <div id="visit-plan" hidden>
+      <div id="stops" class="stops"></div>
       <div class="visit-metrics">
         <div class="metric"><span class="metric-label">Total previsto na feira</span><strong id="visit-total"></strong><p id="visit-total-note"></p></div>
         <div class="metric metric-saving"><span class="metric-label">Economia sobre a capa</span><strong id="visit-savings"></strong><p id="visit-savings-note"></p></div>
@@ -163,13 +175,12 @@
         <div class="comparison-labels"><span id="comparison-fair"></span><span id="comparison-cover"></span></div>
       </figure>
       <details id="visit-map-panel" open><summary>Mapa oficial das ilhas</summary>
-        <div class="visit-map" tabindex="0" role="region" aria-label="Mapa da tenda com rolagem horizontal"><img src="assets/mapa-ilhas.webp" width="1284" height="211" alt="Mapa linear da tenda, da Praça do Relógio Solar à Raia Olímpica, com os espaços Verde, Rosa e Marrom"></div>
+        <div class="visit-map" tabindex="0" role="region" aria-label="Mapa da tenda com rolagem horizontal"><img src="assets/mapa-ilhas.webp" loading="lazy" width="1284" height="211" alt="Mapa linear da tenda, da Praça do Relógio Solar à Raia Olímpica, com os espaços Verde, Rosa e Marrom"></div>
         <div class="map-actions">
           <button class="zoom-map" type="button" aria-pressed="false">Ampliar mapa</button>
           <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio">Ver mapas detalhados na Edusp</a>
         </div>
       </details>
-      <div id="stops" class="stops"></div>
     </div>
   </section>
   <footer class="note">
@@ -177,11 +188,12 @@
       <p>Um projeto do <a href="https://leitura.dev/">Leitura Dev</a>.</p>
       <a class="footer-feedback" href="#feedback">Feedback</a>
     </div>
-    <p>App independente com dados coletados na busca oficial da Edusp em 22/11/2026. Os temas foram atribuídos automaticamente. Para atualizações, consulte o <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio">site oficial da Festa</a>. Capas das editoras e da <a href="https://openlibrary.org/">Open Library</a>.</p>
-    <button id="analytics-preferences" type="button" hidden>Preferências de estatísticas</button>
+    <p>App independente. Base de 22/11/2026 da <a href="https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio">Edusp</a>. Temas atribuídos automaticamente. Capas das editoras e da <a href="https://openlibrary.org/">Open Library</a>.</p>
+    <button id="analytics-preferences" type="button" aria-controls="analytics-notice" aria-expanded="false" hidden>Preferências de estatísticas</button>
   </footer>
   <noscript><p>Ative o JavaScript para pesquisar e filtrar o catálogo.</p></noscript>
 </main>
+<button id="analytics-launcher" type="button" aria-label="Preferências de estatísticas" title="Preferências de estatísticas" aria-controls="analytics-notice" aria-expanded="false" hidden><span aria-hidden="true">🍪</span></button>
 <section class="analytics-notice" id="analytics-notice" aria-labelledby="analytics-title" hidden>
   <h2 id="analytics-title" tabindex="-1">Estatísticas do site</h2>
   <p>Com sua permissão, usamos o Google Analytics para contar os acessos ao site.</p>

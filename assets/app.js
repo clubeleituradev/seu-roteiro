@@ -255,7 +255,8 @@ function renderVisit() {
   byId('favorites-count').textContent = '(' + integer.format(count) + ')';
   byId('visit-plan').hidden = count === 0;
   byId('visit-import-help').hidden = count > 0;
-  for (const id of ['clear-favorites','print-visit','export-visit']) byId(id).hidden = count === 0;
+  byId('visit-options').hidden = count === 0;
+  byId('import-visit-empty').hidden = count > 0;
   let summary = count
     ? count + (count === 1 ? ' livro' : ' livros') + ' · ' + groups.size + (groups.size === 1 ? ' editora' : ' editoras')
     : 'Favorite livros para reunir os títulos de cada editora em uma única parada.';
@@ -501,6 +502,8 @@ function filter(state) {
   const query = normalize(fields.query.value.trim()).split(/\s+/).filter(Boolean);
   const maximum = fields.price.valueAsNumber;
   const selected = new Map(facetIds.map(id => [id, state ? state[id] : fields[id].value]).filter(([,value]) => value));
+  const filterCount = selected.size + Number(!Number.isNaN(maximum));
+  byId('filter-toggle').textContent = 'Filtros e ordenação' + (filterCount ? ' (' + filterCount + ')' : '');
   const activeFacets = [...selected];
   const counts = Object.fromEntries(facetIds.map(id => [id, new Map()]));
   filtered = [];
@@ -534,6 +537,10 @@ function resetFilters() {
 }
 for (const field of Object.values(fields)) field.addEventListener(field.tagName === 'SELECT' ? 'change' : 'input', () => filter());
 byId('reset').onclick = resetFilters;
+byId('filter-toggle').onclick = () => {
+  const collapsed = byId('catalog-filters').toggleAttribute('data-mobile-collapsed');
+  byId('filter-toggle').setAttribute('aria-expanded', String(!collapsed));
+};
 byId('share-search').onclick = async () => {
   const feedback = byId('share-feedback');
   if (!/^https?:$/.test(location.protocol)) {
@@ -575,6 +582,7 @@ byId('export-visit').onclick = () => {
   transferStatus.textContent = 'Importe o arquivo baixado no outro aparelho para abrir o roteiro.';
 };
 const visitFile = byId('visit-file');
+byId('import-visit-empty').onclick = () => visitFile.click();
 byId('import-visit').onclick = () => visitFile.click();
 visitFile.addEventListener('change', async () => {
   const file = visitFile.files[0];
@@ -636,64 +644,13 @@ byId('clear-favorites').onclick = () => {
   render();
   byId('visit-title').focus({preventScroll:true});
 };
-const headings = {capa: 'home-title', catalogo: 'page-title', editoras: 'directory-title', roteiro: 'visit-title'};
-const homeSections = {'como-usar': 'flow-title', 'como-chegar': 'arrival-title', feedback: 'feedback-title'};
-const menuToggle = byId('menu-toggle');
-function setMenu(open) {
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-}
-menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
-byId('main-menu').addEventListener('click', event => {
-  const link = event.target.closest('a[data-page]');
-  if (!link || menuToggle.getAttribute('aria-expanded') !== 'true') return;
-  setMenu(false);
-  if (location.hash === link.hash) menuToggle.focus();
-});
-document.addEventListener('click', event => {
-  if (!event.target.closest('.site-header')) setMenu(false);
-});
-document.addEventListener('keydown', event => {
-  if (event.key !== 'Escape' || menuToggle.getAttribute('aria-expanded') !== 'true') return;
-  setMenu(false);
-  menuToggle.focus();
-});
-matchMedia('(max-width: 720px)').addEventListener('change', () => setMenu(false));
-function showPage(moveFocus) {
-  setMenu(false);
-  const hash = location.hash.slice(1).split('?')[0];
-  const active = Object.hasOwn(headings, hash) ? hash : hash === 'query' ? 'catalogo' : 'capa';
-  for (const view of document.querySelectorAll('[data-view]')) view.hidden = view.id !== active;
-  for (const link of document.querySelectorAll('[data-page]')) {
-    if (link.dataset.page === active) link.setAttribute('aria-current', 'page');
-    else link.removeAttribute('aria-current');
-  }
-  document.querySelector('.skip').href = active === 'catalogo' ? '#query' : '#' + headings[active];
-  if (active === 'editoras') renderPublishers();
-  if (active === 'catalogo') filter(readCatalogHash());
-  window.roteiroAnalytics?.page(active);
-  if (Object.hasOwn(homeSections, hash)) {
-    if (moveFocus) {
-      const heading = byId(homeSections[hash]);
-      heading.setAttribute('tabindex', '-1');
-      heading.focus({preventScroll:true});
-    }
-    byId(hash).scrollIntoView();
-  } else if (moveFocus && Object.hasOwn(headings, hash)) {
-    const heading = byId(headings[active]);
-    heading.setAttribute('tabindex', '-1');
-    heading.focus({preventScroll:true});
-    window.scrollTo(0, 0);
-  }
-}
-document.querySelector('.skip').addEventListener('click', event => {
-  event.preventDefault();
-  const target = byId(event.currentTarget.hash.slice(1));
-  if (target.tagName !== 'INPUT') target.setAttribute('tabindex', '-1');
-  target.focus();
-});
 byId('publisher-query').addEventListener('input', renderPublishers);
 byId('publisher-zone').addEventListener('change', renderPublishers);
-window.addEventListener('hashchange', () => showPage(true));
 renderVisit();
-showPage(false);
+byId('favorites-count').hidden = false;
+window.roteiroCatalog = {
+  open(view) {
+    if (view === 'editoras') renderPublishers();
+    if (view === 'catalogo') filter(readCatalogHash());
+  }
+};
