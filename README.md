@@ -20,14 +20,28 @@ A busca, os filtros e o mapa das ilhas funcionam offline. As capas e os links ex
 | `assets/mapa-ilhas.webp` | Mapa oficial das ilhas |
 | `dados/catalogo.js` | Dados carregados pelo site, incluindo os endereços das capas |
 | `dados/*.csv` | Exportações de livros, classificações e editoras para análise |
+| `scripts/cruzar_listas_editoras.py` | Comando para comparar as listas com a base e aplicar as atualizações |
+| `scripts/catalogo/` | Extração dos PDFs, normalização, comparação e gravação dos dados |
+| `scripts/requirements.txt` | Versão do PyMuPDF usada na importação |
 
 ## Fonte dos dados
 
-A base de **22/11/2026** inclui **26.014 registros** de livros e **163 editoras** na lista de catálogos. O assunto informado pela editora é preservado. Temas e subtemas são rótulos atribuídos automaticamente, e os registros sem classificação aparecem em **A classificar**.
+A busca integrada de **22/11/2026** foi complementada com as listas das editoras baixadas em **25/11/2026**. A base resultante reúne **33.040 registros** e **176 editoras** no índice oficial. Temas e subtemas são atribuídos automaticamente, e os registros sem classificação aparecem em **A classificar**.
 
 Para consultar preços, disponibilidade e novos títulos, use o [catálogo oficial da Edusp](https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros). As capas vêm das editoras e da [Open Library](https://openlibrary.org/).
 
-Ao atualizar a base, mantenha a mesma data e os mesmos totais nos CSVs, em `dados/catalogo.js` e nos avisos de fonte de `index.html`.
+### Cruzar as listas das editoras
+
+A pasta local `dados/listas-editoras/2026-11-25/` guarda os PDFs, o `manifesto.json` com a relação de editoras e URLs, e o `busca-oficial.json` usado para confirmar metadados. Essa pasta é ignorada pelo Git. Execute os comandos abaixo na raiz do projeto.
+
+```sh
+python -m pip install -r scripts/requirements.txt
+python scripts/cruzar_listas_editoras.py --listas dados/listas-editoras/2026-11-25 --referencia dados/listas-editoras/2026-11-25/busca-oficial.json
+```
+
+Por padrão, o script grava apenas `comparacao.csv` e `cobertura.csv` ao lado dos PDFs. O primeiro detalha correções, inclusões e casos para revisão. O segundo resume a extração por editora. Depois de revisar os relatórios, repita o comando com `--aplicar` para gravar também os CSVs do projeto e `dados/catalogo.js`.
+
+No cruzamento, o preço identificado com segurança no PDF tem prioridade. Para conflitos internos ou extrações incertas, o script usa a busca oficial quando encontra a mesma edição. Se a edição estiver identificada e o preço em conflito não puder ser confirmado, o campo fica em branco. Títulos podem ser acrescentados com o preço de feira em branco quando a lista só publica o valor de capa. Use `--editora "Nome da editora"` para limitar a comparação.
 
 ## Google Analytics 4
 

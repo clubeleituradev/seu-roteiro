@@ -77,18 +77,18 @@ for (const [key, value] of amazonPrices) {
 }
 const islandNames = {
   1:'Edusp',2:'34 Editora',3:'Ed. Unesp',4:'Aller;Com-Arte;Ed. UnB;Ed. UFSC;Casa Marx | Iskra;Maria Antonia Edições - GMARX;Publicações BBM;Revista IEA',
-  5:'Ateliê',6:'Ed. da Unicamp',7:'Ed. UFABC;Ed. UFPR;Ed. UFV;Ed. Mackenzie;Eduefs;Eduel;Eduem;EdUFSCar;EDUNILA;Uneb;Pontes',9:'Ed. Unifesp;Ercolano;Fiocruz;GLAC;Quina;Sisko;Sobinfluencia;Temporal;Zagodoni;Zain',
-  10:'Ed. UFMG',11:'Record (Grupo)',12:'Contexto;Hucitec;Moinhos;Seja Breve;Via Lettera',13:'Boitempo',15:'baião;Biruta;Casa de Letras;Pulo do Gato;Quatro Cantos',16:'Carochinha;Jujuba',17:'Girassol (Grupo);Paulinas',
+  5:'Ateliê;Ateliê Editorial',6:'Ed. da Unicamp',7:'Ed. UFABC;Ed. UFPR;Ed. UFV;Ed. Mackenzie;Eduefs;Eduel;Eduem;EdUFSCar;EDUNILA;Uneb;Pontes',8:'Perspectiva',9:'Ed. Unifesp;Ercolano;Fiocruz;GLAC;Quina;Sisko;Sobinfluencia;Temporal;Zagodoni;Zain',
+  10:'Ed. UFMG',11:'Record (Grupo)',12:'Contexto;Hucitec;Moinhos;Seja Breve;Via Lettera',13:'Boitempo',15:'baião;Biruta;Casa de Letras;Pulo do Gato;Quatro Cantos;Solisluna',16:'Carochinha;Jujuba',17:'Girassol (Grupo);Paulinas',
   18:'Boitatá;Caxinguelê;Livros da Matriz;Mil Caramiolas;Mostarda;Viajante do Tempo',19:'Aletria;Bamboozinho;Miolo Mole',20:'Melhoramentos;Telos',
-  21:'Catapulta;Ciranda Cultural (Grupo);Joaquina',22:'Caixote;ÔZé;Panda Books',23:'Autores Associados;Cortez',24:'Movimento Neomarginal;Pedrazul (Grupo);Peirópolis',
-  25:'Malê',28:'Anita Garibaldi;Contraponto;Escala;Mnema;Odysseus',29:'Seiva;Ubu',30:'Arquipélago;Bazar do Tempo;Carambaia;Fino Traço;Fósforo',
+  21:'Catapulta;Ciranda Cultural (Grupo);Joaquina',22:'Caixote;Duna Dueto;ÔZé;Panda Books',23:'Autores Associados;Cortez',24:'Cintra;Movimento Neomarginal;Parábola;Pedrazul (Grupo);Peirópolis',
+  25:'Malê',26:'L&PM',27:'Taschen',28:'Anita Garibaldi;Contraponto;Escala;Mnema;Odysseus',29:'Seiva;Ubu',30:'Arquipélago;Bazar do Tempo;Carambaia;Fino Traço;Fósforo',
   31:'Estação Liberdade;Vozes',33:"Contracorrente;Cosac;Dublinense;Kotter;Letra Selvagem;Patuá;UK'A - Arte e Literatura;Valentina",
-  35:'Ars et Vita;Arte & Letra;Kitembo;Lote 42;Palas Athena;Phorte;Solaris',36:'HarperCollins Brasil',
+  34:'Globo Livros',35:'Ars et Vita;Arte & Letra;Kitembo;Lote 42;Matrix;Palas Athena;Phorte;Solaris',36:'HarperCollins Brasil',
   37:'DarkSide / Magnética',38:'Brasiliense;Martins Fontes - Selo Martins;Monolito;Paco;Sesc SP',39:'Blucher',40:'Planeta',41:'Diadorim;Pensamento (Grupo);Reformatório',
   42:'Elefante;Expressão Popular;Funilaria',43:'Global',44:'Iná;LVM;nVersos;Pinard',45:'Autêntica (Grupo)',46:'Nova Fronteira;Trama;Nova Fronteira | Trama;Pallas;Rocco',
   47:'Azuco;Hedra;N-1 edições;Olhares;Tabla',48:'todavia',49:'Alameda;Atheneu;DBA Literatura;Nós;Terra Virgem',50:'Antofágica;Balão;Hyperion Comics',
-  51:'Edições Loyola',52:'Autonomia Literária;Escuta;Grua;LavraPalavra;Relicário;Sundermann;Zapata',53:'Summus (Grupo);Tinta-da-China',54:'BEĨ;Buzz;Universo dos Livros',
-  56:'IMS;Instituto Tomie Ohtake',57:'Barbatana;Book One;DarkSide / Magnética;Instante;Manjuba;Mundaréu;Mundaréu | Manjuba;TantaTinta;TantaTinta | Carlini e Caniato',58:'NewPOP',60:'Aleph'
+  51:'Edições Loyola;Nova Alexandria',52:'Autonomia Literária;Escuta;Grua;LavraPalavra;Relicário;Sundermann;Zapata',53:'Summus (Grupo);Tinta-da-China',54:'BEĨ;Buzz;Da Vinci;Universo dos Livros',55:'Conrad',
+  56:'IMS;Instituto Tomie Ohtake',57:'Barbatana;Book One;DarkSide / Magnética;Instante;Manjuba;MASP;Mundaréu;Mundaréu | Manjuba;TantaTinta;TantaTinta | Carlini e Caniato',58:'NewPOP',60:'Aleph'
 };
 const publisherIslands = new Map();
 for (const [island, names] of Object.entries(islandNames)) {

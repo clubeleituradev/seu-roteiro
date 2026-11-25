@@ -155,3 +155,22 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# Regras locais do Faça seu roteiro
+/.vscode/
+/.idea/
+/node_modules/
+/.env
+/.env.*
+Thumbs.db
+Desktop.ini
+.DS_Store
+/dados/listas-editoras/
+
+# Arquivos locais do Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
