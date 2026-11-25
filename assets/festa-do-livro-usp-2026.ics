@@ -1,0 +1,65 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Leitura Dev//Faca seu roteiro//PT-BR
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:festa-do-livro-usp-2026-11-25@leitura.dev
+DTSTAMP:20261125T120000Z
+DTSTART:20261125T120000Z
+DTEND:20261126T000000Z
+SUMMARY:28ª Festa do Livro da USP
+LOCATION:Av. Professor Mello Moraes\, Travessa C\, Cidade Universitária\,
+ São Paulo
+DESCRIPTION:Entrada gratuita. Consulte o site oficial para atualizações.
+URL:https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:festa-do-livro-usp-2026-11-26@leitura.dev
+DTSTAMP:20261125T120000Z
+DTSTART:20261126T120000Z
+DTEND:20261127T000000Z
+SUMMARY:28ª Festa do Livro da USP
+LOCATION:Av. Professor Mello Moraes\, Travessa C\, Cidade Universitária\,
+ São Paulo
+DESCRIPTION:Entrada gratuita. Consulte o site oficial para atualizações.
+URL:https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:festa-do-livro-usp-2026-11-27@leitura.dev
+DTSTAMP:20261125T120000Z
+DTSTART:20261127T120000Z
+DTEND:20261128T000000Z
+SUMMARY:28ª Festa do Livro da USP
+LOCATION:Av. Professor Mello Moraes\, Travessa C\, Cidade Universitária\,
+ São Paulo
+DESCRIPTION:Entrada gratuita. Consulte o site oficial para atualizações.
+URL:https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:festa-do-livro-usp-2026-11-28@leitura.dev
+DTSTAMP:20261125T120000Z
+DTSTART:20261128T120000Z
+DTEND:20261128T220000Z
+SUMMARY:28ª Festa do Livro da USP
+LOCATION:Av. Professor Mello Moraes\, Travessa C\, Cidade Universitária\,
+ São Paulo
+DESCRIPTION:Entrada gratuita. Consulte o site oficial para atualizações.
+URL:https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:festa-do-livro-usp-2026-11-29@leitura.dev
+DTSTAMP:20261125T120000Z
+DTSTART:20261129T120000Z
+DTEND:20261129T220000Z
+SUMMARY:28ª Festa do Livro da USP
+LOCATION:Av. Professor Mello Moraes\, Travessa C\, Cidade Universitária\,
+ São Paulo
+DESCRIPTION:Entrada gratuita. Consulte o site oficial para atualizações.
+URL:https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/inicio
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

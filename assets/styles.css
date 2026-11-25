@@ -73,7 +73,8 @@ h1 { font-size: clamp(2.25rem, 5.5vw, 4.65rem); font-weight: 800; line-height: 1
 .event-date strong { display: block; font-size: clamp(1.4rem,3vw,2.1rem); line-height: 1.2; letter-spacing: -.025em }
 .event-date p { margin-top: .3rem; color: var(--muted) }
 .event-schedule { display: grid; gap: .2rem; color: var(--ink); font-size: .9375rem }
-.home-event > a { justify-self: start; font-weight: 650 }
+.home-event .arrival-links a { display: inline-flex; align-items: center; gap: .35rem; min-height: 24px; font-weight: 650 }
+.home-event .arrival-links svg { width: 1.125rem; height: 1.125rem; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
 .faq { margin-top: 1.6rem; padding: clamp(1rem,3vw,1.5rem); border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); scroll-margin-top: 5rem }
 .faq h2 { font-size: 1.35rem; letter-spacing: -.025em; margin-bottom: .35rem }
 .faq details { border-top: 1px solid var(--line); scroll-margin-top: 5rem }
