@@ -1,50 +1,56 @@
 # Faça seu roteiro
 
-App independente do [Leitura Dev](https://leitura.dev/) para planejar a visita à 28ª Festa do Livro da USP. O catálogo permite buscar por título, autor e ISBN, combinar filtros, localizar as editoras no mapa e montar um roteiro de compras.
+Planeje sua visita à **28ª Festa do Livro da USP**. Encontre livros, veja onde ficam as editoras e organize suas compras em um roteiro. Um projeto independente do [Leitura Dev](https://leitura.dev/).
 
-## Como abrir e publicar
+**[Abrir o Faça seu roteiro](https://clubeleituradev.github.io/seu-roteiro/)**
 
-Abra `index.html` no navegador. Para publicar, use a raiz do repositório como diretório de uma hospedagem estática. O projeto funciona sem instalação, compilação ou chaves de API.
+## O que você pode fazer
 
-A busca, os filtros e o mapa das ilhas funcionam offline. As capas e os links externos dependem de conexão. Use **Exportar roteiro** e **Importar roteiro** para transferir favoritos, marcações e preços da Amazon informados manualmente para outro navegador ou para o endereço publicado. A importação mantém os preços já salvos no navegador de destino.
+- Buscar por título, autor ou ISBN e combinar filtros de editora, tema, subtema e preço.
+- Favoritar livros e ver o roteiro agrupado por editora, com as ilhas no mapa e o total da compra.
+- Comparar o total da feira com os preços da Amazon que você informar para as mesmas edições.
+- Exportar e importar o roteiro para levar seus favoritos a outro navegador ou aparelho.
 
-## Estrutura
+## Dados e fontes
+
+O catálogo reúne **33.040 registros de 176 editoras**. A busca da Edusp de **22/11/2026** foi complementada com as listas oficiais das editoras de **25/11/2026**. Quando o preço pode ser confirmado para a edição, a lista da editora tem prioridade. Valores conflitantes sem confirmação ficam em branco. Os temas e subtemas são atribuídos automaticamente.
+
+Para confirmar preços e disponibilidade, consulte a [busca oficial da Festa](https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros) ou a [página de editoras](https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/editoras). As capas vêm das editoras e da [Open Library](https://openlibrary.org/).
+
+## Rodar localmente
+
+```sh
+git clone https://github.com/clubeleituradev/seu-roteiro.git
+cd seu-roteiro
+```
+
+Abra [`index.html`](index.html) no navegador. O app usa HTML, CSS e JavaScript e funciona sem instalar dependências ou compilar. A busca e o mapa funcionam offline. Capas externas e links da feira precisam de conexão.
 
 | Caminho | Conteúdo |
-|---|---|
-| `index.html` | Capa, catálogo, lista de editoras e roteiro |
-| `assets/styles.css` | Estilos e layout responsivo |
-| `assets/app.js` | Busca, filtros, favoritos, mapa e comparações |
-| `assets/navigation.js` | Menu, navegação e carregamento do catálogo sob demanda |
-| `assets/analytics.js` | Medição de visitas e preferências do Google Analytics 4 |
-| `assets/mapa-ilhas.webp` | Mapa oficial das ilhas |
-| `dados/catalogo.js` | Dados carregados pelo site, incluindo os endereços das capas |
-| `dados/*.csv` | Exportações de livros, classificações e editoras para análise |
-| `scripts/cruzar_listas_editoras.py` | Comando para comparar as listas com a base e aplicar as atualizações |
-| `scripts/catalogo/` | Extração dos PDFs, normalização, comparação e gravação dos dados |
-| `scripts/requirements.txt` | Versão do PyMuPDF usada na importação |
+| --- | --- |
+| [`assets/`](assets/) | Interface, navegação, mapa e estatísticas |
+| [`dados/`](dados/) | Catálogo usado pelo app e exportações CSV |
+| [`scripts/`](scripts/) | Importação e conferência das listas das editoras |
 
-## Fonte dos dados
+## Atualizar o catálogo
 
-A busca integrada de **22/11/2026** foi complementada com as listas das editoras baixadas em **25/11/2026**. A base resultante reúne **33.040 registros** e **176 editoras** no índice oficial. Temas e subtemas são atribuídos automaticamente, e os registros sem classificação aparecem em **A classificar**.
+O app já inclui o catálogo pronto. Para rodar a importação, baixe os PDFs da página oficial de editoras e coloque-os em uma pasta com um `manifesto.json`. O manifesto é uma lista de objetos com os campos `editora`, `arquivo` (nome do PDF), `url` (link oficial da lista) e `site` (site da editora). Os PDFs e relatórios locais em `dados/listas-editoras/` ficam fora do Git.
 
-Para consultar preços, disponibilidade e novos títulos, use o [catálogo oficial da Edusp](https://festadolivro.edusp.com.br/28-festa-do-livro-da-usp/busca-por-livros). As capas vêm das editoras e da [Open Library](https://openlibrary.org/).
-
-### Cruzar as listas das editoras
-
-A pasta local `dados/listas-editoras/2026-11-25/` guarda os PDFs, o `manifesto.json` com a relação de editoras e URLs, e o `busca-oficial.json` usado para confirmar metadados. Essa pasta é ignorada pelo Git. Execute os comandos abaixo na raiz do projeto.
+Na raiz do projeto, instale a dependência e rode a comparação. Substitua o caminho no exemplo pelo da sua pasta.
 
 ```sh
 python -m pip install -r scripts/requirements.txt
-python scripts/cruzar_listas_editoras.py --listas dados/listas-editoras/2026-11-25 --referencia dados/listas-editoras/2026-11-25/busca-oficial.json
+python scripts/cruzar_listas_editoras.py --listas dados/listas-editoras/2026-11-25
 ```
 
-Por padrão, o script grava apenas `comparacao.csv` e `cobertura.csv` ao lado dos PDFs. O primeiro detalha correções, inclusões e casos para revisão. O segundo resume a extração por editora. Depois de revisar os relatórios, repita o comando com `--aplicar` para gravar também os CSVs do projeto e `dados/catalogo.js`.
+Use `--referencia CAMINHO.json` se tiver uma exportação da busca oficial para confirmar preços e metadados. Use `--editora "Nome da editora"` para limitar a conferência. Revise `comparacao.csv` e `cobertura.csv` na pasta das listas e repita o comando com `--aplicar` para atualizar o catálogo e os CSVs versionados.
 
-No cruzamento, o preço identificado com segurança no PDF tem prioridade. Para conflitos internos ou extrações incertas, o script usa a busca oficial quando encontra a mesma edição. Se a edição estiver identificada e o preço em conflito não puder ser confirmado, o campo fica em branco. Títulos podem ser acrescentados com o preço de feira em branco quando a lista só publica o valor de capa. Use `--editora "Nome da editora"` para limitar a comparação.
+## Privacidade
 
-## Google Analytics 4
+O roteiro é salvo no navegador. O Google Analytics conta visitas após o consentimento e recebe o endereço da aba sem os termos e filtros da busca.
 
-O app usa o mesmo fluxo web GA4 do Leitura Dev. O ID público de medição fica na meta tag `ga4-measurement-id` em `index.html`. O app registra uma visualização a cada troca de aba após o visitante permitir a medição. Ele usa o endereço da aba sem os termos e filtros da busca.
+## Feedback e licença
 
-Depois de publicar, valide a coleta em **Tempo real**. Para acompanhar a quantidade de visitas ao longo do tempo, use a métrica **Sessões** e filtre pelo domínio ou caminho publicado do app. Mudanças nas [visualizações automáticas baseadas no histórico](https://developers.google.com/analytics/devguides/collection/ga4/views#disable_page_changes_based_on_browser_history_events) afetam todo o fluxo compartilhado. Se essa opção estiver ligada, ela pode duplicar visualizações de abas.
+Para sugerir melhorias ou relatar um problema, use o [formulário de issues do GitHub](https://github.com/clubeleituradev/seu-roteiro/issues/new) ou escreva para [contato@leitura.dev](mailto:contato@leitura.dev).
+
+O código é distribuído sob a [licença MIT](https://github.com/clubeleituradev/seu-roteiro/blob/main/LICENSE).
